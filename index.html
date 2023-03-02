@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Riddle Carousel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9f9e3cfccf.js" crossorigin="anonymous"></script>
+</head>
+  
+  <body>
+    
+<!--  OPENING MODAL    -->
+    
+    <div class="modal fade" id="openingModal" tabindex="-1" aria-labelledby="openingModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="openingModalLabel">Welcome to the riddles page!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <h5>Instructions:</h5>
+                  <ul>
+                    <li>1. This page contains 12 riddles. The answer to each riddle is one word. (Except for the first riddle, which is two words to represent one thing.)</li>
+                    <li>2. Spelling counts! (You must spell the word correctly)</li>
+                    <li>3. Click the big, red question mark for a hint. Each riddle has one hint.</li>
+                    <li>4. Solve all 12 riddles to win!</li>
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn modal-button" data-bs-dismiss="modal">Go!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+<!--  WIN MODAL    -->
+    
+    <div class="modal fade" id="winModal" tabindex="-1" aria-labelledby="winModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-emoji-laughing" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M12.331 9.5a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5zM7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5z"/>
+</svg>
+                  <h3 class="modal-title mx-auto px-3" id="openingModalLabel">You Win!</h3>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-emoji-laughing" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M12.331 9.5a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5zM7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5z"/>
+</svg>
+                </div>
+                <div class="modal-body">
+                  <h4 class="mb-5">Amazing! Fantastic! Stupendous! You have earned the link to secret page 5. Just press the "Go" button below!</h4>
+                  <h4>P.S. Please don't tell everyone else all the answers! That's no fun.</h4>
+                  <div class="text-center w-100 my-4"><img class="mx-auto win-img" src="https://drive.google.com/uc?export=view&id=169rP5aMdUwe_CqiuFGh46ZFWIbl8APIJ" alt="question mark" width="200" height="200"></div>
+                </div>
+                <div class="modal-footer">
+                  <a href="https://usd232.instructure.com/courses/15878/pages/secret-page-five" target="_blank"><button type="button" class="btn modal-button">Go!</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+<!--   HEADER   -->
+    
+    <header class="container-fluid mt-2 pt-3 pb-2">
+      <div class="row">
+        <div class="col-2"></div>
+        <h1 class="col-8 text-center">Riddles!</h1>
+        <div class="col-2 text-center pt-3">
+          <div class="btn-group-toggle" data-toggle="buttons">
+              <button class="info-button" type="button" data-bs-toggle="modal" data-bs-target="#openingModal"><svg data-bs-toggle="tooltip" data-bs-placement="left" title="Help" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-question-square-fill question-icon-dark" viewBox="0 0 16 16">
+            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.496 6.033a.237.237 0 0 1-.24-.247C5.35 4.091 6.737 3.5 8.005 3.5c1.396 0 2.672.73 2.672 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.105a.25.25 0 0 1-.25.25h-.81a.25.25 0 0 1-.25-.246l-.004-.217c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.803 0-1.253.478-1.342 1.134-.018.137-.128.25-.266.25h-.825zm2.325 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z"/>
+          </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-question-square question-icon-light" viewBox="0 0 16 16">
+  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+  <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+</svg></button>
+                 
+          </div>
+        </div>
+      </div>
+    </header>
+    
+<!--  CAROUSEL  LINKS  -->
+    <main class="py-3 container-sm">
+    <div class="text-center">
+      <div class="carousel-links mx-auto my-0 h-100"  id="carousel-links">
+        <a href="#slide-1" class="slide-link active" id="sl-1" >1</a>
+        <a href="#slide-2" class="slide-link" id="sl-2">2</a>
+        <a href="#slide-3" class="slide-link" id="sl-3">3</a>
+        <a href="#slide-4" class="slide-link" id="sl-4">4</a>
+        <a href="#slide-5" class="slide-link" id="sl-5">5</a>
+        <a href="#slide-6" class="slide-link" id="sl-6">6</a>
+        <a href="#slide-7" class="slide-link" id="sl-7">7</a>
+        <a href="#slide-8" class="slide-link" id="sl-8">8</a>
+        <a href="#slide-9" class="slide-link" id="sl-9">9</a>
+        <a href="#slide-10" class="slide-link" id="sl-10">10</a>
+        <a href="#slide-11" class="slide-link" id="sl-11">11</a>
+        <a href="#slide-12" class="slide-link" id="sl-12">12</a>
+      </div>
+      
+<!--    MAIN CAROUSEL AREA    -->
+      
+      <!--     TOASTS     -->
+        <div class="toast-container position-absolute">
+                    <div class="toast hide" id="correctToast" role="alert">
+                        <div class="toast-header text-white">
+                            <strong class="me-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+</svg>  Correct!</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body text-dark">
+                            Nice job! You solved that riddle!
+                        </div>
+                    </div>
+          
+         <div class="toast hide" id="incorrectToast" role="alert"> 
+          <div class="toast-header text-white">
+                            <strong class="me-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-frown" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+</svg>  Inorrect</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body text-dark">
+                            Good try! Click on the red question mark for a hint.
+                        </div>
+                    </div>
+          
+          <div class="toast hide" id="againToast" role="alert"> 
+          <div class="toast-header text-black">
+                            <strong class="me-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+</svg>  Woo Hoo!</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body text-dark">
+                            You already got this riddle correct!
+                        </div>
+                    </div>
+                </div>
+      
+      <div class="carousel d-flex mx-auto m-3 position-relative" id="carousel">            
+      
+  <!--    CARD 1      --> 
+        <div class="slide slide-1 container my-0 mx-2 p-0 card" id="slide-1">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #1" data-bs-content="The answer is two words that describe one symbol."></div>
+
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #1</h5>
+                 <p class="card-text">I can tell if you don't know</p>
+                 <p class="card-text">You can use me if you're stumped</p>
+                <p class="card-text">I'm a symbol of confusion</p>
+                <p class="card-text">Or inquiry or doubt</p>
+                <div>
+                  
+                    <input class="guess-input form-control" id="guess-box-1" type="text" placeholder="What am I?">
+                    <button class="btn d-block mx-auto my-3 submit-btn" id="submit-1" onclick="guess()">Guess!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+<!--    CARD 2      -->
+        <div class="slide slide-2 container my-0 mx-2 p-0 card" id="slide-2">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #2" data-bs-content="Imagine you are seeing yourself standing right in front of you. What are you looking at?"></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #2</h5>
+                <p class="card-text">If you wave, I wave</p>
+                <p class="card-text">If I blink, you do too</p>
+                <p class="card-text">Which of us is real?</p>
+                <p class="card-text">I am! We say together</p>
+                <div>
+               
+                    <input class="guess-input form-control" id="guess-box-2" type="text" placeholder="What am I?">
+                    <button class="btn d-block mx-auto my-3 submit-btn" id="submit-2" onclick="guess()">Guess!</button>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 3      -->
+        <div class="slide slide-3 container my-0 mx-2 p-0 card" id="slide-3">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-3" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #3" data-bs-content="The way the words are positioned is a clue."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #3</h5>
+                <img src="https://drive.google.com/uc?export=view&id=1eAOne7Qnw2E5vPEze82YUAZsJBxBCmDl" width="100" height="100" data-bs-toggle="tooltip" data-bs-placement="left" title="Click for larger image">
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-3" type="text" placeholder="What is it?">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-3" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 4      -->
+        <div class="slide slide-4 container my-0 mx-2 p-0 card" id="slide-4">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-4" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #4" data-bs-content="Look carefully at the punctuation in the riddle."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #4</h5>
+                <p class="card-text">The answer to this riddle is not where. The answer to this riddle is not who. The answer to this riddle is not when. The answer to this riddle is not why. What is the answer to this riddle!</p>
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-4" type="text" placeholder="What is the answer!">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-4" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 5      -->
+        <div class="slide slide-5 container my-0 mx-2 p-0 card" id="slide-5">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-5" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #5" data-bs-content="The answer is a type of food."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #5</h5>
+                <p class="card-text">Little soldiers standing in rows</p>
+                <p class="card-text">Their helmets gleam with yellow glows</p>
+                <p class="card-text">Don't command them with admiral, general, or king</p>
+                <p class="card-text">To them, a "colonel" is the highest thing</p>
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-5" type="text" placeholder="What are they?">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-5" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 6      -->
+        <div class="slide slide-6 container my-0 mx-2 p-0 card" id="slide-6">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-6" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #6" data-bs-content="The missing letters are clues."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #6</h5>
+                <p class="card-text">One day, a lady named Mss Smth called the doctor. “Help!” She sad. “ can't see!” The doctor quickly saw what was wrong. “T s no wonder you can't see,” sad the doctor. “You are mssng your s!”.</p>
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-6" type="text" placeholder="What was missing?">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-6" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 7      -->
+        <div class="slide slide-7 container my-0 mx-2 p-0 card" id="slide-7">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-7" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #7" data-bs-content="It &quot;winks&quot; when light hits it. It &quot;drinks&quot; because it gets filled up when it goes under the water."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #7</h5>
+                <p class="card-text">On boat, I float</p>
+                <p class="card-text">I wink</p>
+                <p class="card-text">I clink</p>
+                <p class="card-text">I drink</p>
+                <p class="card-text">I sink</p>
+                <p class="card-text">On ground, I’m found</p>
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-7" type="text" placeholder="What am I?">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-7" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 8      -->
+        <div class="slide slide-8 container my-0 mx-2 p-0 card" id="slide-8">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-8" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #8" data-bs-content="Start at the end."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #8</h5>
+                <p class="card-text">Sentence this in word first the is riddle this to answer the!</p>
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-8" type="text" placeholder="Guess!">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-8" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 9      -->
+        <div class="slide slide-9 container my-0 mx-2 p-0 card" id="slide-9">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-9" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #9" data-bs-content="Diagonal!"></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #9</h5>
+                <img class="img-8" src="https://drive.google.com/uc?export=view&id=1L4G7vWlWMfniESjmw0WeaD7SXlkzno5T" width="200">
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-9" type="text" placeholder="Your guess">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-9" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 10      -->
+        <div class="slide slide-10 container my-0 mx-2 p-0 card" id="slide-10">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-10" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #10" data-bs-content="The riddle is an acrostic."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #10</h5>
+                <p class="card-text">What you see here are just lines on a screen</p>
+                <p class="card-text">Only you can hear them in your head as you</p>
+                <p class="card-text">Read. Amazing! What if I changed the lines like this:</p>
+                <p class="card-text">Dgo3neicniuneiw iua lkn uiowp juiec893h fvd</p>
+                <p class="card-text">So, why do some lines make sense and others don’t?</p>
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-10" type="text" placeholder="Your guess">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-10" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 11      -->
+        <div class="slide slide-11 container my-0 mx-2 p-0 card" id="slide-11">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-11" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #11" data-bs-content="The word you are looking for is missing an s."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #11</h5>
+                <p class="card-text">There is one word that is mispelled somewhere in one of these riddles. Can you find that word?</p>
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-11" type="text" placeholder="What is the word?">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-11" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--    CARD 12      -->
+        <div class="slide slide-12 container my-0 mx-2 p-0 card" id="slide-12">
+          <div class="row">
+            <div class="col-4">
+              <div class="img-bg hint-12" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" title="Hint #12" data-bs-content="It's a part of the body."></div>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">Riddle #12</h5>
+                <p class="card-text">Without feet it slips</p>
+                <p class="card-text">Without bed it lies</p>
+                <p class="card-text">Without rope it's tied</p>
+                <p class="card-text">To hold it is wise</p>
+                <div>
+
+                    <input class="guess-input form-control" id="guess-box-12" type="text" placeholder="What is it?">
+                    <button class="btn d-block mx-auto my-3 submit-btn" type="submit" id="submit-12" onclick="guess()">Guess!</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+<!--   Score   -->
+      
+      <div class="score row container align-items-bottom justify-content-space-around">
+        <div class="col-1 col-sm-3"></div>
+        <h6 class="your-score display-6 col-10 col-sm-6 text-center"><span>Your score: </span><span id="score-digit">0</span></h6>
+        <div class="col-1 col-sm-3"></div>
+      </div>
+    </div>
+    </main>  
+    
+
+<!--  INFO    -->
+    
+<!--    BOOTSTRAP    -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+      
+//       INITIALIZE TOOLTIPS
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})  
+
+// INITIALIZE POPOVERS
+
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+              return new bootstrap.Popover(popoverTriggerEl)
+            })
+
+    </script>
+    
+  </body>
+  
+</html>
